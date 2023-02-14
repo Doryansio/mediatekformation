@@ -14,8 +14,10 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Formation[]    findAll()
  * @method Formation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+define ("ORDER", true);
 class FormationRepository extends ServiceEntityRepository
 {
+    
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Formation::class);
