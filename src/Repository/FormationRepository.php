@@ -76,12 +76,12 @@ class FormationRepository extends ServiceEntityRepository
             return $this->findAll();
         }
         if($table==""){
-            return $this->createQueryBuilder('f')
+        return $this->createQueryBuilder('f')
                     ->where('f.'.$champ.' LIKE :valeur')
                     ->orderBy('f.publishedAt', 'DESC')
                     ->setParameter('valeur', '%'.$valeur.'%')
                     ->getQuery()
-                    ->getResult();            
+                    ->getResult();  
         }else{
             return $this->createQueryBuilder('f')
                     ->join('f.'.$table, 't')                    
@@ -90,8 +90,8 @@ class FormationRepository extends ServiceEntityRepository
                     ->setParameter('valeur', '%'.$valeur.'%')
                     ->getQuery()
                     ->getResult();                   
-        }       
-    }    
+        }
+    }
     
     /**
      * Retourne les n formations les plus récentes

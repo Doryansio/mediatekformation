@@ -6,6 +6,7 @@ use App\Repository\PlaylistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PlaylistRepository::class)
@@ -66,6 +67,24 @@ class Playlist
         $this->description = $description;
 
         return $this;
+    }
+    
+    /**
+     * @return Collection<int, string>
+     */
+    public function getCategoriesPlaylist(): Collection
+    {
+        $categories = new ArrayCollection();
+        foreach($this->formations as $formation)
+        {
+            $categoriesFormation = $formation->getCategories();
+            foreach ($categoriesFormation as $categorieFormation) {
+                if (!$categories->contains($categorieFormation->getName())) {
+                    $categories[] = $categorieFormation->getName();
+                }
+            }
+        }
+        return $categories;
     }
 
     /**
