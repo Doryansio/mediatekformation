@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 define("FORMATIONS", true);
 
 class FormationsController extends AbstractController {
-    const FORMATIONS = "pages/formations.html.twig";
     public const FORMATIONS = "pages/formations.html.twig";
     /**
      * 
