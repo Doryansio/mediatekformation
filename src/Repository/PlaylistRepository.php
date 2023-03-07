@@ -84,6 +84,7 @@ class PlaylistRepository extends ServiceEntityRepository
                     ->where('p.'.$champ.' LIKE :valeur')
                     ->setParameter('valeur', '%'.$valeur.'%')
                     ->groupBy('p.id')
+                    ->groupBy('p.id')                   
                     ->orderBy('p.name', 'ASC')
                     ->getQuery()
                     ->getResult();  

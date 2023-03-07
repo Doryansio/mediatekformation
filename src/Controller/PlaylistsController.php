@@ -18,6 +18,8 @@ define ('PLAYLISTS', true);
 
 class PlaylistsController extends AbstractController {
     const PLAYLISTS = "pages/playlists.html.twig";
+    public const PLAYLIST = "pages/playlists.html.twig";
+    
     /**
      * 
      * @var PlaylistRepository

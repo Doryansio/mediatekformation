@@ -1,4 +1,4 @@
-{% extends "basefront.html.twig" %}
+{% extends "base.html.twig" %}
 {% block body %}
     <table class="table table-striped">
         <caption> tableau des formations </caption>
@@ -33,9 +33,9 @@
                 <th class="text-left align-top" scope="col">
                     catégories
                     <form class="form-inline mt-1" method="POST" action="{{ path('formations.findallcontain', {champ:'id', table:'categories'}) }}">
-                        <select class="form-select form-select-sm" name="recherche" id="recherche" onchange="this.form.submit()">
+                        <select class="form-select form-select-sm" name="recherche" id="recherche" onchange="this.form.submit();">
                             <option value=""></option>
-                            {% for categorie in categories %}
+                            {% for categories in categorie %}
                                 <option 
                                     {% if valeur|default and valeur==categorie.id %} 
                                         selected
