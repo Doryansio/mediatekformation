@@ -16,6 +16,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class FormationRepository extends ServiceEntityRepository
 {
+    
+    private const FPUBLISHED = 'f.publishedAt';
+            
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Formation::class);
@@ -76,7 +79,7 @@ class FormationRepository extends ServiceEntityRepository
         if($table==""){
             return $this->createQueryBuilder('f')
                     ->where('f.'.$champ.' LIKE :valeur')
-                    ->orderBy('f.publishedAt', 'DESC')
+                    ->orderBy(self::FPUBLISHED, 'DESC')
                     ->setParameter('valeur', '%'.$valeur.'%')
                     ->getQuery()
                     ->getResult();            
@@ -84,7 +87,7 @@ class FormationRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('f')
                     ->join('f.'.$table, 't')                    
                     ->where('t.'.$champ.' LIKE :valeur')
-                    ->orderBy('f.publishedAt', 'DESC')
+                    ->orderBy(self::FPUBLISHED, 'DESC')
                     ->setParameter('valeur', '%'.$valeur.'%')
                     ->getQuery()
                     ->getResult();                   
@@ -98,7 +101,7 @@ class FormationRepository extends ServiceEntityRepository
      */
     public function findAllLasted($nb) : array {
         return $this->createQueryBuilder('f')
-                ->orderBy('f.publishedAt', 'DESC')
+                ->orderBy(self::FPUBLISHED, 'DESC')
                 ->setMaxResults($nb)     
                 ->getQuery()
                 ->getResult();
@@ -114,7 +117,7 @@ class FormationRepository extends ServiceEntityRepository
                 ->join('f.playlist', 'p')
                 ->where('p.id=:id')
                 ->setParameter('id', $idPlaylist)
-                ->orderBy('f.publishedAt', 'ASC')   
+                ->orderBy(self::FPUBLISHED, 'ASC')   
                 ->getQuery()
                 ->getResult();        
     }
