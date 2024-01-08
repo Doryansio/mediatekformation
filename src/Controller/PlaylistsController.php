@@ -64,17 +64,14 @@ class PlaylistsController extends AbstractController {
      * @return Response
      */
     public function sort($champ, $ordre): Response{
-            $playlists = $this->playlistRepository->findAllOrderByName($champ,$ordre);
-            $categories = $this->categorieRepository->findAll();
+        $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+        $categories = $this->categorieRepository->findAll();
             return $this->render(self::PAGES_PLAYLIST,[
-                'playlists' => $playlists,
-                'categories' => $categories,
-            ]);
-        }
-        
-        
-        
-    
+            'playlists' => $playlists,
+            'categories' => $categories            
+        ]);
+    }          
+	
     /**
      * @Route("/playlists/recherche/{champ}/{table}", name="playlists.findallcontain")
      * @param type $champ
@@ -103,7 +100,7 @@ class PlaylistsController extends AbstractController {
         $playlist = $this->playlistRepository->find($id);
         $playlistCategories = $this->categorieRepository->findAllForOnePlaylist($id);
         $playlistFormations = $this->formationRepository->findAllForOnePlaylist($id);
-        return $this->render(self::PAGES_PLAYLIST, [
+        return $this->render("pages/playlist.html.twig", [
             'playlist' => $playlist,
             'playlistcategories' => $playlistCategories,
             'playlistformations' => $playlistFormations
