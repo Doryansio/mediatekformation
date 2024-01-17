@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+
 use App\Repository\CategorieRepository;
 use App\Repository\FormationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -93,6 +94,8 @@ class FormationsController extends AbstractController {
         return $this->render("pages/formation.html.twig", [
             'formation' => $formation
         ]);        
-    }   
+    }
+    
+   
     
 }

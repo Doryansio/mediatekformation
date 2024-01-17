@@ -114,5 +114,9 @@ class Playlist
 		}
 		return $categories;
 	}
+        
+        public function __toString() {
+            return $this->name;
+        }
 	
 }
