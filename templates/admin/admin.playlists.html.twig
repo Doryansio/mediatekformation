@@ -16,7 +16,14 @@
     </div>
     {% endfor %}
     
+    {% for message in app.flashes('notice1') %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     
+    </button>
+    </div>
+    {% endfor %}
     
     
     
@@ -96,10 +103,16 @@
                          <td>
                             {{ playlists[k].formations|length }}
                         </td>
-                        <td>
+                        <td class="text-center">
                             
                             <a href="{{ path('admin.playlist.edit', {id:playlists[k].id}) }}" class="btn btn-secondary">Editer</a>
-                            <a href="{{ path('admin.playlist.suppr', {id:playlists[k].id}) }} " class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer {{playlists[k].name}}?');">Supprimer</a>           
+                            <form onsubmit="return confirm('Voulez-vous vraiment supprimer {{playlists[k].name}} ?')" 
+                              method="post" action="{{ path('admin.playlist.suppr', {id:playlists[k].id}) }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('suppr' ~ playlists[k].id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                                       
                         </td>
                         
                           </tr>
