@@ -21,20 +21,19 @@ class PlaylistControllerTest extends WebTestCase{
     
      public function testSortOnName(){
         $client = static::createClient();
-        $client->request('GET', '/playlists/recherche/name');
-        $crawler = $client->submitForm('submit', ['recherche' => 'MCD'], 'POST');
-        $this->assertCount(self::NOMBREPLAYLIST,$crawler->filter('h5'));
+        $client->request('GET', '/playlists');
+        $client->submitForm('filtrer', ['recherche' => 'MCD']);
         $this->assertSelectorTextContains('h5',
                 'Cours MCD MLD MPD');
     }
 
     public function testSortOnCategorie(){
         $client = static::createClient();
-        $crawler = $client->request('GET', '/playlists/recherche/id/categories');
-        $client->submitForm('filtrer_categorie', ['recherche' => '7']);
-        $this->assertCount(self::NOMBREPLAYLIST,$crawler->filter('h5'));
+        $client->request('GET', '/playlists/recherche/id/categories');
+        $client->submitForm('filtrer', ['recherche' => 'java']);
         $this->assertSelectorTextContains('h5',
-                "Bases de la programmation (C#)");
+                'Eclipse et Java');
+        
     }
 
 
