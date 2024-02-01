@@ -35,6 +35,14 @@ class PlaylistControllerTest extends WebTestCase{
                 'Eclipse et Java');
         
     }
+    public function testSortOnNbFormations(){
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/playlists/tri/nbformations/ASC');
+        $this->assertSelectorTextContains('th','playlist');
+        $this -> assertCount(4,$crawler->filter('th'));
+        $this->assertSelectorTextContains('h5',
+                'Cours Informatique embarquée');
+    }
 
 
     public function testSortOnTitleAsc(){

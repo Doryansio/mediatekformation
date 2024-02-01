@@ -64,13 +64,24 @@ class PlaylistsController extends AbstractController {
      * @return Response
      */
     public function sort($champ, $ordre): Response{
-        $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+        switch ($champ){
+            case"name":
+                $playlists = $this->playlistRepository->findAllOrderByName($ordre);
+                break;
+            case"nbformations":
+                $playlists = $this->playlistRepository->findAllOrderByNbFormations($ordre);
+                break;
+            
+            default :
+        }
         $categories = $this->categorieRepository->findAll();
-            return $this->render(self::PAGES_PLAYLIST,[
+        return $this->render(self::PAGES_PLAYLIST,[
             'playlists' => $playlists,
-            'categories' => $categories            
+            'categories' => $categories
         ]);
-    }          
+    } 
+    
+
 	
     /**
      * @Route("/playlists/recherche/{champ}/{table}", name="playlists.findallcontain")

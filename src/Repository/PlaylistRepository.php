@@ -56,7 +56,9 @@ class PlaylistRepository extends ServiceEntityRepository
                 ->orderBy(self::PNAME, $ordre)
                 ->getQuery()
                 ->getResult();       
-    } 
+    }
+    
+   
     
     /**
      * Enregistrements dont un champ contient une valeur
@@ -91,7 +93,22 @@ class PlaylistRepository extends ServiceEntityRepository
                     ->getResult();              
             
         }           
-    }    
+    }
+    
+    /**
+     * Retourne toutes les playlists triées par le nombre de formations qu'elle contiennent
+     * @param type $ordre
+     * @return playlist[]
+     *
+     */
+    public function findAllOrderByNbFormations($ordre): array{
+        return $this->createQueryBuilder('p')
+                ->leftJoin(self::PFORMATION, 'f')
+                ->groupBy('p.id')
+                ->orderBy('count(p.name)', $ordre)
+                ->getQuery()
+                ->getResult();
+    }
 
 
     
