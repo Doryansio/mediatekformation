@@ -5,7 +5,7 @@ Actuellement, seule la partie front office a été développée.
 voici le lien vers le depot d'oriigine de l'application 
 https://github.com/CNED-SLAM/mediatekformation
 
-## foctionnalité ajoutées
+## fonctionnalité ajoutées
 Dans la page des playlists, nous avons ajouter une colonne pour afficher le nombre de formations par playlist et permettre le tri croissant et décroissant sur cette colonne. Cette information doit aussi s'afficher dans la page d'une playlist.
 ![ajoue de fonctionnalité ](https://github.com/Doryansio/mediatekformation/assets/91891883/c62abcb7-e34c-4f62-875c-09909dd79963)
 ![ajoue de fonctionnalité 2](https://github.com/Doryansio/mediatekformation/assets/91891883/8599e0aa-b22e-458f-b542-a70aa4e750bf)
